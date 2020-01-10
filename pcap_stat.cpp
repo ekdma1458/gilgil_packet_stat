@@ -119,17 +119,8 @@ void countIpAtoB(const ST_je_ip_header* packet, map<pair<u_int32_t, u_int32_t>, 
             m->at(make_pair(ip_dst.s_addr, ip_src.s_addr)).rx_b+=size;
         }
     } else{
-        ST_je_Rx_Tx rx_tx = {0, 0, 0, 0};
+        ST_je_Rx_Tx rx_tx = {1, size, 0, 0};
         m->insert(make_pair(make_pair(ip_src.s_addr, ip_dst.s_addr), rx_tx));
-        if ((m->find(make_pair(ip_src.s_addr, ip_dst.s_addr)) != m->end()) || (m->find(make_pair(ip_dst.s_addr, ip_src.s_addr))) != m->end()){
-            if(m->find(make_pair(ip_src.s_addr, ip_dst.s_addr)) != m->end()){
-                m->at(make_pair(ip_src.s_addr, ip_dst.s_addr)).tx_c++;
-                m->at(make_pair(ip_src.s_addr, ip_dst.s_addr)).tx_b+=size;
-            } else{
-                m->at(make_pair(ip_dst.s_addr, ip_src.s_addr)).rx_c++;
-                m->at(make_pair(ip_dst.s_addr, ip_src.s_addr)).rx_b+=size;
-            }
-        }
     }
 }
 void countMacAtoB(const ST_je_ip_header* packet, map<pair<Mac, Mac>, ST_je_Rx_Tx> *m, bpf_u_int32 size){
@@ -145,16 +136,7 @@ void countMacAtoB(const ST_je_ip_header* packet, map<pair<Mac, Mac>, ST_je_Rx_Tx
             m->at(make_pair(mac_dst, mac_src)).rx_b+=size;
         }
     } else{
-        ST_je_Rx_Tx rx_tx = {0, 0, 0, 0};
+        ST_je_Rx_Tx rx_tx = {1, size, 0, 0};
         m->insert(make_pair(make_pair(mac_src, mac_dst), rx_tx));
-        if ((m->find(make_pair(mac_src, mac_dst)) != m->end()) || (m->find(make_pair(mac_dst, mac_src))) != m->end()){
-            if(m->find(make_pair(mac_src, mac_dst)) != m->end()){
-                m->at(make_pair(mac_src, mac_dst)).tx_c++;
-                m->at(make_pair(mac_src, mac_dst)).tx_b+=size;
-            } else{
-                m->at(make_pair(mac_dst, mac_src)).rx_c++;
-                m->at(make_pair(mac_dst, mac_src)).rx_b+=size;
-            }
-        }
     }
 }
