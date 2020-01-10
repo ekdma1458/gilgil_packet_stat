@@ -52,8 +52,8 @@ void printEndPoint(map<pair<Mac, Mac>, ST_je_Rx_Tx> *m){
         count++;
         Mac test = it->first.first;
         uint8_t* key = test.getEtherHost();
-        test = it->first.second;
-        uint8_t* key2 = test.getEtherHost();
+        Mac test2 = it->first.second;
+        uint8_t* key2 = test2.getEtherHost();
         printf("%02X:%02X:%02X:%02X:%02X:%02X - %02X:%02X:%02X:%02X:%02X:%02X\t",
                *key, *(key + 1), *(key + 2), *(key +3), *(key + 4), *(key + 5),
                *key2, *(key2 + 1), *(key2 + 2), *(key2 +3), *(key2 + 4), *(key2 + 5));
