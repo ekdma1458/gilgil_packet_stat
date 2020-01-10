@@ -49,8 +49,8 @@ int main(int argc, char *argv[])
         system("clear");
         if (num == '1') printEndPoint(&mac);
         else if (num == '2') printEndPoint(&ip);
-        else if (num == '3') printEndPoint(&ip_a_to_b);
-        else if (num == '4') printEndPoint(&mac_a_to_b);
+        else if (num == '3') printEndPoint(&mac_a_to_b);
+        else if (num == '4') printEndPoint(&ip_a_to_b);
         else break;
         cout << endl;
     }
